@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">WEB</a></h1>
+    <input
+      id="night_day"
+      type="button"
+      value="night"
+      onclick="
+      nightDayHandler(this);
+    "
+    />
+
+    <ol id="nav">
+      <li><a href="#!html" onclick="fetchPage('html')">html</a></li>
+      <li><a href="#!css" onclick="fetchPage('css')">css</a></li>
+      <li>
+        <a href="#!javascript" onclick="fetchPage('javascript')">javascript</a>
+      </li>
+    </ol>
+    <article id="#nav"></article>
+    <script>
+      function fetchPage(name) {
+        fetch(name)
+          .then((response) => response.text())
+          .then((result) => {
+            document.querySelector("article").innerHTML = result;
+          });
+      }
+
+      if (location.hash) {
+        fetchPage(location.hash.substr(2));
+      } else {
+        fetchPage("welcome");
+      }
+    </script>
+  </body>
+</html>
